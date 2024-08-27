@@ -1,0 +1,7 @@
+[workspace]
+members = ["zlib-compress"]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1.0.86"
+flate2 = { version = "1.0.17", features = ["zlib"], default-features = false }
