@@ -14,6 +14,7 @@ pub fn write_bytes_to_file(bytes: &[u8], filename: &str) -> anyhow::Result<()> {
     let blob = OpenOptions::new()
         .append(true)
         .create(true)
+        .truncate(true)
         .open(filename)?;
     println!("created file");
 
