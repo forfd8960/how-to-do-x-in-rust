@@ -1,0 +1,14 @@
+[package]
+name = "jwt"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7.7"
+axum-extra = { version = "0.9.4", features = ["typed-header"] }
+tokio = { version = "1.40.0", features = ["full"] }
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"
+jsonwebtoken = "9.3.0"
+bcrypt = "0.15.1"
+chrono = { version = "0.4.38", features = ["serde"] }

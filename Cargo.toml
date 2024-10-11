@@ -1,5 +1,5 @@
 [workspace]
-members = ["zlib-compress", "binary-rw"]
+members = ["zlib-compress", "binary-rw", "jwt"]
 resolver = "2"
 
 [workspace.dependencies]
