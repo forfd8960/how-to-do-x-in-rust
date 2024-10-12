@@ -1,4 +1,7 @@
-use axum::Json;
+use axum::{
+    routing::{get, post},
+    Json, Router,
+};
 use chrono::Utc;
 use jsonwebtoken::{encode, Header};
 use serde::{Deserialize, Serialize};
@@ -19,7 +22,7 @@ pub struct AuthResponse {
     token: String,
 }
 
-pub async fn authorize(Json(payload): Json<AuthPayload>) -> Result<Json<AuthResponse>, AuthError> {
+async fn authorize(Json(payload): Json<AuthPayload>) -> Result<Json<AuthResponse>, AuthError> {
     if payload.username == "" {
         return Err(AuthError::MissingCredentials);
     }
@@ -38,4 +41,16 @@ pub async fn authorize(Json(payload): Json<AuthPayload>) -> Result<Json<AuthResp
         .map_err(|_| AuthError::TokenCreation)?;
 
     Ok(Json(AuthResponse { token }))
+}
+
+async fn access(claim: Claims) -> String {
+    format!("welcome: {}", claim.username)
+}
+
+pub fn set_app_router() -> Router {
+    let routers = Router::new()
+        .route("/login", post(authorize))
+        .route("/access", get(access));
+
+    routers
 }

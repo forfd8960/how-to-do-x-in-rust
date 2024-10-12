@@ -41,8 +41,8 @@ pub struct Claims {
 impl Claims {
     pub fn new(username: String, exp: usize) -> Self {
         Self {
-            username: username,
-            exp: exp,
+            username,
+            exp,
         }
     }
 }
