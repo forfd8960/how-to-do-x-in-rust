@@ -1,6 +1,7 @@
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use serde_json::json;
 
+#[derive(Debug)]
 pub enum AuthError {
     InvalidToken,
     WrongCredentials,
@@ -8,6 +9,7 @@ pub enum AuthError {
     MissingCredentials,
 }
 
+// Implementing IntoResponse for AuthError allows it to be used as the Rejection type in the FromRequestParts trait.
 impl IntoResponse for AuthError {
     fn into_response(self) -> axum::response::Response {
         let (status, err_msg) = match self {
