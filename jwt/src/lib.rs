@@ -8,6 +8,7 @@ use jsonwebtoken::{decode, DecodingKey, EncodingKey, Validation};
 use rand::distributions::{Alphanumeric, DistString};
 use serde::{Deserialize, Serialize};
 
+pub mod app;
 pub mod auth_error;
 
 use once_cell::sync::Lazy;
@@ -35,6 +36,15 @@ impl Keys {
 pub struct Claims {
     username: String,
     exp: usize,
+}
+
+impl Claims {
+    pub fn new(username: String, exp: usize) -> Self {
+        Self {
+            username: username,
+            exp: exp,
+        }
+    }
 }
 
 #[async_trait]
