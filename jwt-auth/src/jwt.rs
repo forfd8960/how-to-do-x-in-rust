@@ -6,7 +6,10 @@ const JWT_DURATION: u64 = 64 * 64 * 24 * 7;
 const JWT_ISS: &str = "how-to-jwt-auth";
 const JWT_AUD: &str = "jwt-user";
 
+#[derive(Clone)]
 pub struct EncodingKey(Ed25519KeyPair);
+
+#[derive(Debug, Clone)]
 pub struct DecodingKey(Ed25519PublicKey);
 
 impl EncodingKey {

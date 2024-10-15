@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct User {
@@ -10,9 +11,9 @@ pub struct User {
 impl User {
     pub fn new(user_name: String, email: String) -> Self {
         Self {
-            user_id: "".to_string(),
-            user_name: user_name,
-            email: email,
+            user_id: Uuid::new_v4().to_string(),
+            user_name,
+            email,
         }
     }
 }

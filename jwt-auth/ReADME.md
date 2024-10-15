@@ -2,6 +2,10 @@
 
 ## Generate private and public key
 
+### refer
+
+[Gen KeyPair with OpenSSL](https://stackoverflow.com/questions/72151697/generating-public-ed25519-key-with-openssl)
+
 ```sh
 openssl genpkey -algorithm ed25519 -out private.pem
 
