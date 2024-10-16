@@ -67,7 +67,7 @@ pub struct CreateBlog {
 
 pub async fn get_router(state: AppState) -> Result<Router, AppError> {
     let api = Router::new()
-        .route("/blog", post(create_post))
+        .route("/blog", post(create_blog))
         .layer(from_fn_with_state(state.clone(), verify_token::<AppState>))
         .route("/signin", post(signin_handler))
         .with_state(state);
@@ -94,7 +94,7 @@ async fn signin_handler(
 }
 
 #[axum::debug_handler]
-async fn create_post(
+async fn create_blog(
     Extension(user): Extension<User>,
     State(_state): State<AppState>,
     Json(create_blog): Json<CreateBlog>,

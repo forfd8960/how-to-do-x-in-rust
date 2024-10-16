@@ -40,3 +40,17 @@ openssl pkey -in private.pem -pubout -out public.pem
         Ok(())
 }
 ```
+
+## Test create blog
+
+* Create blog without Auth
+
+![alt text](without_auth.png)
+
+* Sign In
+
+![alt text](signin.png)
+
+* Create Blog
+
+![alt text](create_blog.png)
