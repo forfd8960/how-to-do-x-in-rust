@@ -1,6 +1,6 @@
 use std::fmt;
 
-use crate::{errors::AppError, user::User, AppState};
+use crate::{errors::AppError, models::user::User, AppState};
 
 pub trait TokenVeirfy {
     type Error: fmt::Debug;

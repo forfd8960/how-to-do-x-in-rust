@@ -1,6 +1,6 @@
 use jwt_simple::{claims::Claims, prelude::*};
 
-use crate::user::User;
+use crate::models::user::User;
 
 const JWT_DURATION: u64 = 64 * 64 * 24 * 7;
 const JWT_ISS: &str = "how-to-jwt-auth";
@@ -18,7 +18,7 @@ impl EncodingKey {
     }
 
     pub fn sign(&self, user: impl Into<User>) -> Result<String, jwt_simple::Error> {
-        let claims = Claims::with_custom_claims(user.into(), Duration::from_secs(JWT_DURATION));
+        let claims: JWTClaims<User> = Claims::with_custom_claims(user.into(), Duration::from_secs(JWT_DURATION));
 
         let claims = claims.with_issuer(JWT_ISS).with_audience(JWT_AUD);
         self.0.sign(claims)
@@ -45,7 +45,7 @@ impl DecodingKey {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::user::User;
+    use crate::models::user::User;
     use anyhow::Result;
 
     #[test]

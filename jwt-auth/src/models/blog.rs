@@ -1,7 +1,7 @@
 use serde::Serialize;
 use uuid::Uuid;
 
-use crate::user::User;
+use super::user::User;
 
 #[derive(Debug, Serialize)]
 pub struct Blog {

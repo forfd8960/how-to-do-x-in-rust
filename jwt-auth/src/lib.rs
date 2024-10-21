@@ -2,22 +2,20 @@ use axum::{
     extract::State, http::StatusCode, middleware::from_fn_with_state, response::IntoResponse,
     routing::post, Extension, Json, Router,
 };
-use blog::Blog;
 use config::AppConfig;
 use errors::AppError;
 use jwt::{DecodingKey, EncodingKey};
 use middleware::verify_token;
+use models::{blog::Blog, user::User};
 use serde::{Deserialize, Serialize};
 use std::{ops::Deref, sync::Arc};
-use user::User;
 
 pub mod auth;
-pub mod blog;
 pub mod config;
 pub mod errors;
 pub mod jwt;
 pub mod middleware;
-pub mod user;
+pub mod models;
 
 #[derive(Clone)]
 pub struct AppState {
