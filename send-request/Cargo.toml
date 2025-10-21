@@ -1,0 +1,34 @@
+[package]
+name = "send-request"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = { workspace=true }
+tokio = { workspace=true }
+serde_json = { workspace=true }
+reqwest = { version = "0.12", features = ["json", "multipart"] }
+
+[[bin]]
+name = "send-get"
+path = "src/examples/get.rs"
+
+[[bin]]
+name = "send-get1"
+path = "src/examples/get_url_params.rs"
+
+[[bin]]
+name = "send-post"
+path = "src/examples/post.rs"
+
+[[bin]]
+name = "send-json"
+path = "src/examples/post_json.rs"
+
+[[bin]]
+name = "send-form"
+path = "src/examples/send_form.rs"
+
+[[bin]]
+name = "send-custom-header"
+path = "src/examples/custom_header.rs"

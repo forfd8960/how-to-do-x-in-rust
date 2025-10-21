@@ -27,7 +27,7 @@ pub fn mpsc1() {
 
     // Wait for senders to finish
     sender2.join().unwrap();
-    drop(tx);
+    drop(tx); // signal the send is end
 
     handle.join().unwrap();
 }
