@@ -1,5 +1,5 @@
 [workspace]
-members = ["zlib-compress", "binary-rw", "jwt", "jwt-auth", "broadcast", "send-request", "serde-test"]
+members = ["zlib-compress", "binary-rw", "jwt", "jwt-auth", "broadcast", "send-request", "serde-test", "clap-cli"]
 resolver = "2"
 
 [workspace.dependencies]
@@ -25,3 +25,5 @@ rmp-serde = "1.1"    # MessagePack support
 serde_bytes = "0.11" # efficient bytes handling
 hex = "0.4"          # optional helper for hex encoding/decoding
 base64 = "0.21"
+clap = { version = "4.5.54", features = ["derive"] }
+colored = "3.1.1"

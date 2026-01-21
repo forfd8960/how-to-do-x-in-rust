@@ -18,7 +18,8 @@ impl EncodingKey {
     }
 
     pub fn sign(&self, user: impl Into<User>) -> Result<String, jwt_simple::Error> {
-        let claims: JWTClaims<User> = Claims::with_custom_claims(user.into(), Duration::from_secs(JWT_DURATION));
+        let claims: JWTClaims<User> =
+            Claims::with_custom_claims(user.into(), Duration::from_secs(JWT_DURATION));
 
         let claims = claims.with_issuer(JWT_ISS).with_audience(JWT_AUD);
         self.0.sign(claims)

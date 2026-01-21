@@ -1,4 +1,8 @@
-use bincode::{config, Decode, Encode};
+use base64::{
+    Engine as _, alphabet,
+    engine::{self, general_purpose},
+};
+use bincode::{Decode, Encode, config};
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
@@ -22,6 +26,8 @@ fn main() -> anyhow::Result<()> {
     to_toml()?;
 
     work_with_data_hex()?;
+
+    work_with_data_base64()?;
 
     encode_decode_bincode()?;
     Ok(())
@@ -144,7 +150,7 @@ fn serialize_data_base64<S>(bytes: &Vec<u8>, serializer: S) -> Result<S::Ok, S::
 where
     S: serde::Serializer,
 {
-    let s = base64::encode(bytes);
+    let s = general_purpose::STANDARD.encode(bytes);
     serializer.serialize_str(&s)
 }
 
@@ -153,11 +159,32 @@ where
     D: serde::Deserializer<'de>,
 {
     let s = String::deserialize(deserializer)?;
-    base64::decode(&s).map_err(serde::de::Error::custom)
+
+    general_purpose::STANDARD
+        .decode(&s)
+        .map_err(serde::de::Error::custom)
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 struct DataBase64 {
-    #[serde(serialize_with = "serialize_data_base64", deserialize_with = "deserialize_data_base64")]
+    #[serde(
+        serialize_with = "serialize_data_base64",
+        deserialize_with = "deserialize_data_base64"
+    )]
     bytes: Vec<u8>,
+}
+
+fn work_with_data_base64() -> anyhow::Result<()> {
+    println!("work with base64 encoded data:");
+    let data = DataBase64 {
+        bytes: vec![0xde, 0xad, 0xbe, 0xef],
+    };
+
+    let encode = serde_json::to_string(&data)?;
+    println!("Serialized json: {}", encode);
+
+    let decoded: DataBase64 = serde_json::from_str(&encode)?;
+    println!("Deserialized from json: {:?}", decoded);
+
+    Ok(())
 }

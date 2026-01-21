@@ -3,12 +3,12 @@ use reqwest;
 /*
 Status: 200 OK
 Body: {
-  "args": {}, 
-  "data": "Hello, server!", 
-  "files": {}, 
-  "form": {}, 
+  "args": {},
+  "data": "Hello, server!",
+  "files": {},
+  "form": {},
   "headers": {
-    "Accept": "*//*", 
+    "Accept": "*//*",
     "Content-Length": "14", 
     "Host": "httpbin.org", 
     "X-Amzn-Trace-Id": "Root=1-68f38a7d-3b3a8bdd28e23c095f4ce675"
