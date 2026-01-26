@@ -1,0 +1,9 @@
+[package]
+name = "parallel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rayon = { workspace = true }
+walkdir = { workspace = true }
+pulldown-cmark = { workspace = true }

@@ -1,5 +1,5 @@
 [workspace]
-members = ["zlib-compress", "binary-rw", "jwt", "jwt-auth", "broadcast", "send-request", "serde-test", "clap-cli"]
+members = ["zlib-compress", "binary-rw", "jwt", "jwt-auth", "broadcast", "send-request", "serde-test", "clap-cli", "this-error", "parallel"]
 resolver = "2"
 
 [workspace.dependencies]
@@ -17,7 +17,7 @@ uuid = { version = "1.10.0", features = [
 axum = { version= "0.7.7", features = ["macros"]}
 axum-extra = { version = "0.9.4", features = ["typed-header"] }
 tokio = { version = "1.40.0", features = ["full"] }
-thiserror = "1.0.64"
+thiserror = "2"
 serde_yaml = "0.9"
 toml = "0.7"         # for toml serialization/deserialization
 bincode = "2.0.1"    # simple binary format
@@ -27,3 +27,6 @@ hex = "0.4"          # optional helper for hex encoding/decoding
 base64 = "0.21"
 clap = { version = "4.5.54", features = ["derive"] }
 colored = "3.1.1"
+rayon = "1.11.0"
+walkdir = "2.5.0"
+pulldown-cmark = "0.13.0"
